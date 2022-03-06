@@ -67,3 +67,48 @@ print('***')
 print(arr2d[0][2])
 print('***')
 # %%
+arr = np.arange(0, 10)
+print(arr)
+arr[1:5]
+arr2d[:2]
+# %%
+arr2d[:2, 1:]
+# %%
+arr2d[1, :2]
+arr2d[:2, 2]
+
+# %%
+arr = np.arange(10)
+print(arr)
+np.sqrt(arr)
+np.exp(arr)
+# %%
+x = np.random.randn(10)
+y = np.random.randn(10)
+np.maximum(x, y)
+# %%
+arr = np.random.randn(10, 20)
+remainder, whole_part = np.modf(arr)
+print(f'{remainder=}')
+print(f'{whole_part=}')
+# %%
+x = np.array([[1.0, 4.0, 9.0], [4.0, 2.0, 1.0]])
+y = np.array([[10.0, 9.0], [5.0, 2.0], [8.0, 1.0]])
+print(f'{x=}')
+print(f'{y=}')
+# %%
+x.dot(y)
+np.dot(x, y)
+np.dot(x, np.ones(3))
+x @ np.ones(3)
+# %%
+from numpy.linalg import inv, qr
+(x := np.random.randn(3, 3))
+mat = x.T.dot(x)
+print(mat)
+inv(mat)
+mat.dot(inv(mat))
+q, r = qr(mat)
+print(f'{q=}')
+print(f'{r=}')
+# %%
