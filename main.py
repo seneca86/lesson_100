@@ -41,3 +41,29 @@ arr**0.5
 arr3 = np.array([[1, 2, 3], [2, 2, 1], [3, 1, 1]])
 np.linalg.inv(arr3)
 # %%
+arr = np.arange(10)
+arr
+arr[3]
+arr[3:5]
+arr[3:5] = 0
+print(arr)
+# %%
+arr_slice = arr[0:3]
+print(arr_slice)
+arr_slice[0] = 100
+print(arr)
+# %%
+arr_slice[:] = 200
+print(arr)
+
+# %%
+arr2d = np.array([[1, 2, 3], [1, 1, 1], [2, 2, 2]])
+print(arr2d)
+print('***')
+print(arr2d[0])
+print('***')
+print(arr2d[0,2])
+print('***')
+print(arr2d[0][2])
+print('***')
+# %%
