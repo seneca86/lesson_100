@@ -139,5 +139,74 @@ print(arr2d[0][2])
 print('***')
 ```
 
+Like one-dimensional objects such as Python lists, ndarrays can be sliced with the familiar syntax:
+
+```python
+arr = np.arange(0, 10)
+print(arr)
+arr[1:5]
+arr2d[:2]
+```
+
+A slice, therefore, selects a range of elements along an axis. It can be helpful to read the expression `arr2d[:2]` as "select the first two rows of arr2d."
+
+You can pass multiple slices just like you can pass multiple indexes. When slicing like this, you always obtain array views of the same number of dimensions. By mixing integer indexes and slices, you get lower dimensional slices.
+
+```python
+arr2d[:2, 1:]
+arr2d[1, :2]
+arr2d[:2, 2]
+```
 
 ![Indexing elements in a NumPy array](assets/pyda_0402.png)
+
+### Universal Functions: Fast Element-Wise Array Functions
+
+A universal function, or ufunc, is a function that performs element-wise operations on data in ndarrays. You can think of them as fast vectorized wrappers for simple functions that take one or more scalar values and produce one or more scalar results.
+
+Many ufuncs are simple element-wise transformations, like `sqrt` or `exp`:
+
+
+```python
+arr = np.arange(10)
+print(arr)
+np.sqrt(arr)
+np.exp(arr)
+```
+
+These are referred to as unary ufuncs. Others, such as add or maximum, take two arrays (thus, binary ufuncs) and return a single array as the result:
+
+```python
+x = np.random.randn(10)
+y = np.random.randn(10)
+np.maximum(x, y)
+```
+
+
+While not common, a ufunc can return multiple arrays. `modf` is one example, a vectorized version of the built-in Python `divmod`; it returns the fractional and integral parts of a floating-point array.
+
+```python
+arr = np.random.randn(10, 20)
+remainder, whole_part = np.modf(arr)
+print(f'{remainder=}')
+print(f'{whole_part=}')
+```
+
+### Linear Algebra
+
+Linear algebra operations, like matrix multiplication, decompositions, determinants, and other square matrix math, are an important part of many array libraries. Unlike some languages like MATLAB, multiplying two two-dimensional arrays with `*` is an element-wise product instead of a matrix dot product. Thus, there is a function `dot`, both an array method and a function in the `numpy` namespace, for matrix multiplication:
+
+```python
+x.dot(y)
+np.dot(x, y)
+np.dot(x, np.ones(3))
+x @ np.ones(3)
+```
+
+- `x.dot(y)` is equivalent to `np.dot(x, y)`
+- A matrix product between a two-dimensional array and a suitably sized one-dimensional array results in a one-dimensional array
+- The `@` symbol (as of Python 3.5) also works as an infix operator that performs matrix multiplication
+
+`numpy.linalg` has a standard set of matrix decompositions and things like inverse and determinant.
+
+
