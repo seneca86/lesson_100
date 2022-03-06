@@ -28,8 +28,16 @@ import numpy as np
 arr1 = np.arange(1000000)
 l1 = list(range(1000000))
 
-%time arr2 = arr1*2
-%time l2 = [x * 2 for x in l1]
+import time
+start = time.time()
+arr2 = arr1*2
+end = time.time()
+print(end - start)
+
+start = time.time()
+l2 = [x * 2 for x in l1]
+end = time.time()
+print(end - start)
 ```
 
 ### The NumPy ndarray
