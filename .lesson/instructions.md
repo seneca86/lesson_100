@@ -1,27 +1,55 @@
-# Instructions  
+## Numpy
 
-  ** this file should contain student lesson instructions **
+### Introduction
+NumPy, short for Numerical Python, is one of the most important foundational packages for numerical computing in Python. Many computational packages providing scientific functionality use NumPy's array objects as one of the standard interfaces lingua franca for data exchange.
 
-  _ students will see these instructions in a read-only workspace tab _
+Here are some of the things you'll find in NumPy:
 
-  ## Steps
-  1. 
-  2. 
-  3. 
+- ndarray, an efficient multidimensional array providing fast array-oriented arithmetic operations and flexible broadcasting capabilities.
 
-  Use [Markdown](https://gist.github.com/cuonggt/9b7d08a597b167299f0d) to format your instructions.
+- Mathematical functions for fast operations on entire arrays of data without having to write loops.
 
-  For example, here is a code block in python3
+- Tools for reading/writing array data to disk and working with memory-mapped files.
+
+- Linear algebra, random number generation, and Fourier transform capabilities.
+
+- A C API for connecting NumPy with libraries written in C, C++, or FORTRAN.
+
+While NumPy provides a computational foundation for general numerical data processing, many readers will want to use pandas as the basis for most kinds of statistics or analytics, especially on tabular data. pandas also provides some more domain-specific functionality like time series manipulation, which is not present in NumPy.
+
+### Performance
+
+One of the reasons NumPy is so important for numerical computations in Python is because it is designed for efficiency on large arrays of data
+
+To give you an idea of the performance difference, consider a NumPy array of one million integers, and the equivalent Python list. Let's multiply each sequence by 2:
+
 ```python
-def hello_world():
-  print("hello world!")
+import numpy as np
+arr1 = np.arange(1000000)
+l1 = list(range(1000000))
+
+%time arr2 = arr1*2
+%time l2 = [x * 2 for x in l1]
 ```
 
+### The NumPy ndarray
 
-  Include an image by placing it in the `assets` folder.
+One of the key features of NumPy is its N-dimensional array object, or ndarray, which is a fast, flexible container for large datasets in Python. Arrays enable you to perform mathematical operations on whole blocks of data using similar syntax to the equivalent operations between scalar elements.
 
-  For example, here is the Replit logo:
+Let's generate a small array of random data:
 
-  ![alt text](assets/logo.png)
-  
-  
+```python
+(data := np.random.randn(3, 4))
+data * 10
+data + data
+```
+
+An ndarray is a generic multidimensional container for homogeneous data; that is, all of the elements must be the same type. Every array has a shape, a tuple indicating the size of each dimension, and a dtype, an object describing the data type of the array
+
+```python
+data.shape
+data.dtype
+```
+
+The easiest way to create an array is to use the array function. This accepts any sequence-like object (including other arrays) and produces a new NumPy array containing the passed data. For example, a list is a good candidate for conversion
+
