@@ -51,5 +51,46 @@ data.shape
 data.dtype
 ```
 
-The easiest way to create an array is to use the array function. This accepts any sequence-like object (including other arrays) and produces a new NumPy array containing the passed data. For example, a list is a good candidate for conversion
+The easiest way to create an array is to use the array function. This accepts any sequence-like object (including other arrays) and produces a new NumPy array containing the passed data. For example, a list is a good candidate for conversion.
+
+Since data2 was a list of lists, the NumPy array arr2 has two dimensions with shape inferred from the data. We can confirm this by inspecting the ndim and shape attributes.
+
+```python
+d1 = [10, 20, 5, 15]
+(arr1 := np.array(d1))
+d2 = [[1, 2, 3, 4], [4, 3, 2, 1]]
+(arr2 := np.array(d2))
+arr2.ndim
+arr2.shape
+```
+
+In addition to `np.array`, there are a number of other functions for creating new arrays. As examples, `zeros` and `ones` create arrays of 0s or 1s, respectively, with a given length or shape. `empty` creates an array without initializing its values to any particular value. To create a higher dimensional array with these methods, pass a tuple for the shape. `arange` is an array-valued version of the built-in Python range function.
+
+```python
+np.zeros(10)
+np.zeros((3,6))
+np.empty((2, 3, 2))
+np.arange(15)
+np.full((2,2), 2.4)
+np.eye(3)
+```
+
+### Arithmetic with NumPy Arrays
+
+Arrays are important because they enable you to express batch operations on data without writing any `for` loops. NumPy users call this **vectorization**. Any arithmetic operations between equal-size arrays applies the operation element-wise.
+
+For the particulary important case of inverting a matrix we need to use the function `np.linalg.inv()`.
+
+```python
+arr = np.array([[1.0, 2.0, 3.0], [1.5, 2.5, 3.5]])
+arr
+arr * arr
+arr - arr
+1/arr
+arr**0.5
+arr3 = np.array([[1, 2, 3], [2, 2, 1], [3, 1, 1]])
+np.linalg.inv(arr3)
+```
+
+### Basic Indexing and Slicing
 
