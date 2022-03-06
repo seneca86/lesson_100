@@ -1,4 +1,4 @@
-## Numpy
+## Introduction to NumPy
 
 ### Introduction
 NumPy, short for Numerical Python, is one of the most important foundational packages for numerical computing in Python. Many computational packages providing scientific functionality use NumPy's array objects as one of the standard interfaces lingua franca for data exchange.
@@ -94,3 +94,50 @@ np.linalg.inv(arr3)
 
 ### Basic Indexing and Slicing
 
+NumPy array indexing is a deep topic, as there are many ways you may want to select a subset of your data or individual elements. One-dimensional arrays are simple; on the surface they act similarly to Python lists:
+
+```python
+arr = np.arange(10)
+arr
+arr[3]
+arr[3:5]
+arr[3:5] = 0
+print(arr)
+```
+
+As you can see, if you assign a scalar value to a slice, the value is propagated (or broadcasted henceforth) to the entire selection. Array slices are views on the original array; this means that the data is not copied, and any modifications to the view will be reflected in the source array.
+
+```python
+arr_slice = arr[0:3]
+print(arr_slice)
+arr_slice[0] = 100
+print(arr)
+```
+
+The "bare" slice [:] will assign to all values in an array:
+
+```python
+arr_slice[:] = 200
+print(arr)
+```
+
+If you want a copy of a slice of an ndarray instead of a view, you will need to explicitly copy the array—for example, `arr[0:3].copy()`.
+
+With higher dimensional arrays, you have many more options. In a two-dimensional array, the elements at each index are no longer scalars but rather one-dimensional arrays:
+
+![Indexing elements in a NumPy array](assets/pyda_0401.png)
+
+```python
+arr2d = np.array([[1, 2, 3], [1, 1, 1], [2, 2, 2]])
+print(arr2d)
+print('***')
+print(arr2d[0])
+print('***')
+print(arr2d[0,2])
+print('***')
+print(arr2d[0][2])
+print('***')
+```
+
+
+![Indexing elements in a NumPy array](assets/pyda_0402.png)
